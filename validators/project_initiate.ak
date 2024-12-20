@@ -23,7 +23,7 @@ validator project_initiate(config_nft: PolicyId) {
     expect Some(datum) = datum
     let Transaction { inputs, reference_inputs, outputs, extra_signatories, .. } =
       tx
-
+ 
     // find ref_input and Datum type
     let ref_input =
       utils.find_ref_input_with_config_nft(reference_inputs, config_nft)
