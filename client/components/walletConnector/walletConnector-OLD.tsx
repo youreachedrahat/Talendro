@@ -69,9 +69,10 @@ export default function WalletComponent() {
     <Popover open={isOpen} onOpenChange={setIsOpen}>
       <PopoverTrigger asChild>
         <Button
-          variant={!wallet ? "default" : "outline"}
+          // variant={!wallet ? "default" : "outline"}
+          variant={"outline"}
           disabled={connecting}
-          className={"max-sm:p-2 max-sm:h-8"}
+          className={"max-sm:p-2 max-sm:h-8 border-primary/50 border-2"}
         >
           {connecting ? (
             <>
