@@ -5,11 +5,11 @@ import { ArrowDown } from "lucide-react";
 import { TalendroLogo } from "@/components/icons";
 import MouseFollower from "@/components/home/MouseFollower";
 import Link from "next/link";
-import { AnimatedBeamDemo } from "@/components/home/animatedBeam";
+import { Timeline } from "@/components/ui/timeline";
+import { timelineData } from "@/components/ui/timelineData";
 
 export default function Homepage() {
   const [scrollProgress, setScrollProgress] = useState(0);
-  const [wHeight, setWHeight] = useState(0);
   const [hideHero, setHideHero] = useState(false);
   const heroRef = useRef<HTMLDivElement>(null);
 
@@ -19,7 +19,6 @@ export default function Homepage() {
       const windowHeight = window.innerHeight;
       const progress = Math.min(scrollPosition / windowHeight, 2);
       setHideHero(scrollPosition / windowHeight > 2);
-      setWHeight(windowHeight);
       setScrollProgress(progress);
     };
 
@@ -29,10 +28,10 @@ export default function Homepage() {
 
   const blurAmount = Math.min(scrollProgress * 10, 5); // Max blur of 5px
   const opacity = Math.min(scrollProgress * 2, 1); // Fade in effect
+
   return (
     <main>
       <MouseFollower />
-      {/* Fixed Hero Section */}
       <div
         ref={heroRef}
         className={`fixed inset-0 flex items-center justify-center transition-all duration-300 ${hideHero && "hidden"}`}
@@ -85,26 +84,24 @@ export default function Homepage() {
             </p>
           </Link>
         </section>
-        <section>
-          <AnimatedBeamDemo />
-        </section>
 
-        <section className="relative min-h-[80vh] flex items-center justify-center bg-background">
+        <section className="relative min-h-[80vh] flex flex-col items-center justify-center bg-background">
           <div className="container mx-auto px-4 py-24 text-center space-y-3 sm:space-y-6">
             <Link
               href="/projects"
               className="relative text-3xl md:text-5xl font-light group"
             >
               Let&apos;s Create
-              <span className="absolute left-0 bottom-0 w-0 h-[2px] bg-foreground transition-all duration-300 group-hover:w-full">
-                {" "}
-              </span>
+              <span className="absolute left-0 bottom-0 w-0 h-[2px] bg-foreground transition-all duration-300 group-hover:w-full"></span>
             </Link>
             <p className="text-muted-foreground max-w-2xl mx-auto">
               Have a project in mind? Let&apos;s create something amazing
               together.
             </p>
           </div>
+        </section>
+        <section className="w-full">
+          <Timeline data={timelineData} />
         </section>
       </div>
     </main>

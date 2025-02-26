@@ -61,8 +61,9 @@ export default function ArbitratorTokenMinter() {
   };
 
   useEffect(() => {
+    if (!address) return;
     fetchProjects();
-  }, [lucid]);
+  }, [lucid, address]);
 
   async function handleClickMint() {
     setIsMinting(true);
@@ -179,9 +180,11 @@ export default function ArbitratorTokenMinter() {
               ))}
             </div>
           ) : (
-            <p className="text-center text-muted-foreground">
-              No projects found for arbitration.
-            </p>
+            <div className="flex justify-center items-center min-h-[40vh]">
+              <p className="text-muted-foreground ">
+                No projects found for arbitration.
+              </p>
+            </div>
           )}
         </CardContent>
       </Card>
